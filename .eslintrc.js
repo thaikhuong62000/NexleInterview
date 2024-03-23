@@ -55,7 +55,6 @@ module.exports = {
 		'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 		'react/display-name': 'off',
 		'prettier/prettier': [
-			'_off',
 			{
 				printWidth: 80,
 				endOfLine: 'lf',

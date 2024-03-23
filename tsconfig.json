@@ -1,35 +1,35 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json",
-  "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "jsx": "react-native",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "sourceMap": true,
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "types": ["jest", "node"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
-  "include": [
-    "./src/**/*",
-    "./src/@types/**/*",
-    "index.d.ts",
-    ".eslintrc.js",
-    "jest.setup.js",
-    "jest.config.js",
-    "babel.config.js",
-    "index.js"
-  ]
+	"extends": "@tsconfig/react-native/tsconfig.json",
+	"compilerOptions": {
+		"allowJs": false,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"jsx": "react-native",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"sourceMap": true,
+		"target": "esnext",
+		"lib": ["esnext", "dom"],
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"types": ["jest", "node"],
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": [
+		"./src/**/*",
+		"./src/@types/**/*",
+		"index.d.ts",
+		".eslintrc.js",
+		"jest.setup.js",
+		"jest.config.js",
+		"babel.config.js",
+		"index.js"
+	]
 }
