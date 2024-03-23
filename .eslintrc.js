@@ -57,6 +57,8 @@ module.exports = {
 		'react/display-name': 'off',
 		'react/destructuring-assignment': 'off',
 		'@typescript-eslint/no-use-before-define': 'off',
+		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'react/function-component-definition': 'off',
 		'prettier/prettier': [
 			'off',
 			{

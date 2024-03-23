@@ -52,10 +52,10 @@ const objectMap = <T>(
 	) as StyleSheet.NamedStyles<T>;
 };
 
-function transformedStyleSheet<T extends StyleSheet.NamedStyles<T>>(
-	styleSheet: InputNamedStyles<T>
-): StyleSheet.NamedStyles<T> {
-	return StyleSheet.create(objectMap(styleSheet, objectColorMode));
+function transformedStyleSheet<T extends InputNamedStyles<T>>(
+	styleSheet: T | InputNamedStyles<T>
+): T {
+	return StyleSheet.create(objectMap(styleSheet, objectColorMode)) as T;
 }
 
 export const useColor = () => {

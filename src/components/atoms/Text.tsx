@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 import { GlobalTypography, makeStyles } from '@/theme';
 
-type Sizes = keyof typeof $sizeStyles;
 type Weights = keyof typeof GlobalTypography.primary;
 type Presets = keyof ReturnType<typeof useStyles>['styles'];
 
@@ -29,10 +28,6 @@ export interface TextProps extends RNTextProps {
 	 */
 	weight?: Weights;
 	/**
-	 * Text size modifier.
-	 */
-	size?: Sizes;
-	/**
 	 * Children components.
 	 */
 	children?: React.ReactNode;
@@ -45,14 +40,7 @@ export interface TextProps extends RNTextProps {
  * - [Documentation and Examples](https://github.com/infinitered/ignite/blob/master/docs/Components-Text.md)
  */
 export function Text(props: TextProps) {
-	const {
-		weight,
-		size,
-		text,
-		children,
-		style: $styleOverride,
-		...rest
-	} = props;
+	const { weight, text, children, style: $styleOverride, ...rest } = props;
 
 	const { styles } = useStyles();
 
@@ -62,7 +50,6 @@ export function Text(props: TextProps) {
 	const $mergedStyle: StyleProp<TextStyle> = [
 		styles[preset],
 		weight && GlobalTypography.primary[weight],
-		size && $sizeStyles[size],
 		$styleOverride,
 	];
 
@@ -73,49 +60,40 @@ export function Text(props: TextProps) {
 	);
 }
 
-const $sizeStyles = {
-	xxl: { fontSize: 36, lineHeight: 44 } satisfies TextStyle,
-	xl: { fontSize: 24, lineHeight: 34 } satisfies TextStyle,
-	lg: { fontSize: 20, lineHeight: 32 } satisfies TextStyle,
-	md: { fontSize: 18, lineHeight: 26 } satisfies TextStyle,
-	sm: { fontSize: 16, lineHeight: 24 } satisfies TextStyle,
-	xs: { fontSize: 14, lineHeight: 21 } satisfies TextStyle,
-	xxs: { fontSize: 12, lineHeight: 18 } satisfies TextStyle,
-};
-
 const useStyles = makeStyles(({ colors, typo }) => ({
 	default: {
-		...$sizeStyles.sm,
+		fontSize: 14,
+		lineHeight: 22.68,
 		...typo.primary.normal,
 		color: colors.text,
 	},
-	bold: {
-		...$sizeStyles.sm,
-		...typo.primary.bold,
-		color: colors.text,
-	},
 	heading: {
-		...$sizeStyles.xxl,
-		...typo.primary.bold,
-		color: colors.text,
-	},
-	subheading: {
-		...$sizeStyles.lg,
-		...typo.primary.medium,
+		fontSize: 22,
+		lineHeight: 26.4,
+		...typo.primary.normal,
 		color: colors.text,
 	},
 	formLabel: {
-		...$sizeStyles.sm,
-		...typo.primary.medium,
+		fontSize: 12,
+		lineHeight: 14.4,
+		...typo.primary.normal,
+		color: colors.palette.neutral100P50,
+	},
+	formValue: {
+		fontSize: 16,
+		lineHeight: 19.2,
+		...typo.primary.normal,
 		color: colors.text,
 	},
 	formHelper: {
-		...$sizeStyles.sm,
+		fontSize: 12,
+		lineHeight: 19.44,
 		...typo.primary.normal,
 		color: colors.text,
 	},
 	error: {
-		...$sizeStyles.sm,
+		fontSize: 12,
+		lineHeight: 14.4,
 		...typo.primary.normal,
 		color: colors.error,
 	},

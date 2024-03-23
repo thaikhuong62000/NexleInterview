@@ -14,7 +14,6 @@ import {
 	ViewStyle,
 } from 'react-native';
 import { GlobalColors } from '@/theme';
-import { Edge, SafeAreaView } from 'react-native-safe-area-context';
 
 interface BaseScreenProps {
 	/**
@@ -33,10 +32,6 @@ interface BaseScreenProps {
 	 * Style for the inner content container useful for padding & margin.
 	 */
 	contentContainerStyle?: StyleProp<ViewStyle>;
-	/**
-	 * Override the default edges for the safe area.
-	 */
-	safeAreaEdges?: Edge[];
 	/**
 	 * Background color
 	 */
@@ -209,19 +204,17 @@ export function Screen(props: ScreenProps) {
 		backgroundColor = GlobalColors.background,
 		KeyboardAvoidingViewProps,
 		keyboardOffset = 0,
-		safeAreaEdges,
 		StatusBarProps,
 		statusBarStyle = 'dark',
 		HeaderComponent,
 	} = props;
 
 	return (
-		<SafeAreaView
-			style={[$containerStyle, { backgroundColor }]}
-			edges={safeAreaEdges}
-		>
+		<View style={[$containerStyle, { backgroundColor }]}>
 			<StatusBar
 				barStyle={statusBarStyle === 'light' ? 'light-content' : 'dark-content'}
+				backgroundColor="transparent"
+				translucent
 				{...StatusBarProps}
 			/>
 
@@ -239,7 +232,7 @@ export function Screen(props: ScreenProps) {
 					<ScreenWithScrolling {...props} />
 				)}
 			</KeyboardAvoidingView>
-		</SafeAreaView>
+		</View>
 	);
 }
 

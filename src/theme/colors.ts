@@ -9,19 +9,19 @@ const palette = {
 	neutral800: '#191919',
 	neutral900: '#000000',
 
-	primary100: '#dff1e2',
-	primary200: '#b6dfbc',
-	primary300: '#8ecd96',
-	primary400: '#72c17d',
-	primary500: '#57b564',
-	primary600: '#469f52',
+	primary100: '#647FFF',
+	// primary200: '#b6dfbc',
+	// primary300: '#8ecd96',
+	// primary400: '#72c17d',
+	// primary500: '#57b564',
+	// primary600: '#469f52',
 
-	secondary100: '#ffe5c4',
-	secondary200: '#ffd49d',
-	secondary300: '#ffc376',
-	secondary400: '#ffb24e',
-	secondary500: '#ffa127',
-	secondary600: '#FF9000',
+	// secondary100: '#ffe5c4',
+	// secondary200: '#ffd49d',
+	// secondary300: '#ffc376',
+	// secondary400: '#ffb24e',
+	// secondary500: '#ffa127',
+	// secondary600: '#FF9000',
 
 	accent100: '#91bdfb',
 	accent200: '#589afa',
@@ -29,11 +29,16 @@ const palette = {
 	accent400: '#075bd5',
 	accent500: '#05439c',
 
-	angry100: '#F2D6CD',
-	angry500: '#C03403',
+	angry500: '#E05151',
 
-	overlay20: 'rgba(25, 16, 21, 0.2)',
-	overlay50: 'rgba(25, 16, 21, 0.5)',
+	neutral100P50: 'rgba(255, 255, 255, 0.5)',
+	neutral100P42: 'rgba(255, 255, 255, 0.42)',
+
+	passwordStrength: {
+		weak: '#E05151',
+		fair: '#E3A063',
+		strong: '#647FFF',
+	},
 } as const;
 
 export const GlobalColors = {
@@ -50,7 +55,7 @@ export const GlobalColors = {
 	/**
 	 * The default text color in many components.
 	 */
-	text: palette.neutral800,
+	text: palette.neutral100,
 	/**
 	 * Secondary text information.
 	 */
@@ -62,7 +67,7 @@ export const GlobalColors = {
 	/**
 	 * The default border color.
 	 */
-	border: palette.neutral400,
+	border: palette.primary100,
 	/**
 	 * The default color of card-like backgrounds.
 	 */
@@ -79,8 +84,4 @@ export const GlobalColors = {
 	 * Error messages.
 	 */
 	error: palette.angry500,
-	/**
-	 * Error Background.
-	 */
-	errorBackground: palette.angry100,
 };
