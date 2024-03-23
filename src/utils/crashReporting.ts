@@ -27,6 +27,7 @@
  */
 export const initCrashReporting = () => {
 	if (__DEV__) {
+		// eslint-disable-next-line no-useless-return
 		return;
 	}
 	// Sentry.init({
@@ -56,6 +57,7 @@ export enum ErrorType {
 export const reportCrash = (
 	error: Error,
 	type: ErrorType = ErrorType.FATAL,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	extraData = {}
 ) => {
 	if (__DEV__) {

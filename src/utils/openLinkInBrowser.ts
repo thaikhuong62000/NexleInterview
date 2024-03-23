@@ -1,8 +1,16 @@
-import { Linking } from "react-native"
+import { Linking } from 'react-native';
 
 /**
  * Helper for opening a give URL in an external browser.
  */
-export function openLinkInBrowser(url: string) {
-  Linking.canOpenURL(url).then((canOpen) => canOpen && Linking.openURL(url))
+export async function openLinkInBrowser(url: string) {
+	try {
+		const canOpen = await Linking.canOpenURL(url);
+		if (canOpen) {
+			await Linking.openURL(url);
+		}
+	} catch (error) {
+		// Handle error here
+	}
+	void Promise.resolve(); // Ignore the Promise
 }

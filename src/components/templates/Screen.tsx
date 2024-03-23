@@ -2,13 +2,13 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import {
 	KeyboardAvoidingView,
-	KeyboardAvoidingViewProps,
+	KeyboardAvoidingViewProps as IKeyboardAvoidingViewProps,
 	LayoutChangeEvent,
 	Platform,
 	ScrollView,
-	ScrollViewProps,
+	ScrollViewProps as IScrollViewProps,
 	StatusBar,
-	StatusBarProps,
+	StatusBarProps as IStatusBarProps,
 	StyleProp,
 	View,
 	ViewStyle,
@@ -52,11 +52,11 @@ interface BaseScreenProps {
 	/**
 	 * Pass any additional props directly to the StatusBar component.
 	 */
-	StatusBarProps?: StatusBarProps;
+	StatusBarProps?: IStatusBarProps;
 	/**
 	 * Pass any additional props directly to the KeyboardAvoidingView component.
 	 */
-	KeyboardAvoidingViewProps?: KeyboardAvoidingViewProps;
+	KeyboardAvoidingViewProps?: IKeyboardAvoidingViewProps;
 }
 
 interface FixedScreenProps extends BaseScreenProps {
@@ -72,7 +72,7 @@ interface ScrollScreenProps extends BaseScreenProps {
 	/**
 	 * Pass any additional props directly to the ScrollView component.
 	 */
-	ScrollViewProps?: ScrollViewProps;
+	ScrollViewProps?: IScrollViewProps;
 }
 
 interface AutoScreenProps extends Omit<ScrollScreenProps, 'preset'> {
@@ -111,16 +111,15 @@ function useAutoPreset(props: AutoScreenProps) {
 			return;
 
 		// check whether content fits the screen then toggle scroll state according to it
-		const contentFitsScreen = (function () {
+		const contentFitsScreen = (() => {
 			if (point) {
 				return (
 					scrollViewContentHeight.current < scrollViewHeight.current - point
 				);
-			} else {
-				return (
-					scrollViewContentHeight.current < scrollViewHeight.current * percent
-				);
 			}
+			return (
+				scrollViewContentHeight.current < scrollViewHeight.current * percent
+			);
 		})();
 
 		// content is less than the size of the screen, so we can disable scrolling
@@ -174,7 +173,7 @@ function ScreenWithScrolling(props: ScreenProps) {
 	const ref = useRef<ScrollView>(null);
 
 	const { scrollEnabled, onContentSizeChange, onLayout } = useAutoPreset(
-		props as AutoScreenProps,
+		props as AutoScreenProps
 	);
 
 	// Add native behavior of pressing the active tab to scroll to the top of the content

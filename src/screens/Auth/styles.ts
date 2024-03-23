@@ -1,3 +1,4 @@
 import { makeStyles } from '@/theme';
 
-export const useStyles = makeStyles(({}) => ({}));
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const useStyles = makeStyles(({ colors }) => ({}));

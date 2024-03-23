@@ -1,5 +1,5 @@
-const Empty = () => {
+function Empty() {
 	return null;
-};
+}
 
 export default Empty;

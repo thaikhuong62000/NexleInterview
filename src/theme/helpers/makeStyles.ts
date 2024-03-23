@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { InputStyle } from '@/types';
+
 import { StyleSheet } from 'react-native';
 import { scale } from './dimensionManager';
 import { GlobalColors } from '../colors';
 import { GlobalSpacing } from '../spacing';
 import { GlobalTypography } from '../typography';
-import { InputStyle } from '@/types';
 
 const objectColorMode = (object: InputStyle): InputStyle => {
 	return Object.entries(object).reduce(

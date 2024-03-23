@@ -47,12 +47,15 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
 
 	// The reason we're using a ref here is because we need to be able
 	// to update the canExit function without re-setting up all the listeners
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const canExitRef = useRef(canExit);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		canExitRef.current = canExit;
 	}, [canExit]);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		// We'll fire this when the back button is pressed on Android.
 		const onBackPress = () => {
@@ -98,6 +101,7 @@ export function navigate<T extends keyof ApplicationStackParamList>(
 	params?: ApplicationStackParamList[T]
 ) {
 	if (navigationRef.isReady()) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-expect-error
 		navigationRef.navigate(name as never, params as never);
 	}

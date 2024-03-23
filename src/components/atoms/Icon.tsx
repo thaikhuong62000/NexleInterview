@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import * as React from 'react';
 import { ComponentType } from 'react';
 import {
@@ -85,7 +87,11 @@ export function Icon(props: IconProps) {
 }
 
 export const iconRegistry = {
-	// icon: require('@/assets/icons/icon.png'),
+	arrow: require('@/assets/icons/arrow.png'),
+	backArrow: require('@/assets/icons/backArrow.png'),
+	check: require('@/assets/icons/check.png'),
+	eye: require('@/assets/icons/eye.png'),
+	eyeClosed: require('@/assets/icons/eyeClosed.png'),
 };
 
 const $imageStyleBase: ImageStyle = {

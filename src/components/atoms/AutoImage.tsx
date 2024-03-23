@@ -24,7 +24,7 @@ export interface AutoImageProps extends ImageProps {
  */
 export function useAutoImage(
 	remoteUri: string,
-	dimensions?: [maxWidth?: number, maxHeight?: number],
+	dimensions?: [maxWidth?: number, maxHeight?: number]
 ): [width: number, height: number] {
 	const [[remoteWidth, remoteHeight], setRemoteImageDimensions] = useState([
 		0, 0,
@@ -43,16 +43,17 @@ export function useAutoImage(
 	if (maxWidth && maxHeight) {
 		const aspectRatio = Math.min(
 			maxWidth / remoteWidth,
-			maxHeight / remoteHeight,
+			maxHeight / remoteHeight
 		);
 		return [remoteWidth * aspectRatio, remoteHeight * aspectRatio];
-	} else if (maxWidth) {
-		return [maxWidth, maxWidth / remoteAspectRatio];
-	} else if (maxHeight) {
-		return [maxHeight * remoteAspectRatio, maxHeight];
-	} else {
-		return [remoteWidth, remoteHeight];
 	}
+	if (maxWidth) {
+		return [maxWidth, maxWidth / remoteAspectRatio];
+	}
+	if (maxHeight) {
+		return [maxHeight * remoteAspectRatio, maxHeight];
+	}
+	return [remoteWidth, remoteHeight];
 }
 
 /**
@@ -61,7 +62,7 @@ export function useAutoImage(
  * - [Documentation and Examples](https://docs.infinite.red/ignite-cli/boilerplate/components/AutoImage/)
  */
 export function AutoImage(props: AutoImageProps) {
-	const { maxWidth, maxHeight, ...ImageProps } = props;
+	const { maxWidth, maxHeight, ...imageProps } = props;
 	const source = props.source as ImageURISource;
 
 	const [width, height] = useAutoImage(
@@ -69,8 +70,8 @@ export function AutoImage(props: AutoImageProps) {
 			web: (source?.uri as string) ?? (source as string),
 			default: source?.uri as string,
 		}),
-		[maxWidth, maxHeight],
+		[maxWidth, maxHeight]
 	);
 
-	return <Image {...ImageProps} style={[{ width, height }, props.style]} />;
+	return <Image {...imageProps} style={[{ width, height }, props.style]} />;
 }
