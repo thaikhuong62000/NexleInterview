@@ -33,6 +33,7 @@ const palette = {
 
 	neutral100P50: 'rgba(255, 255, 255, 0.5)',
 	neutral100P42: 'rgba(255, 255, 255, 0.42)',
+	neutral100P12: 'rgba(255, 255, 255, 0.12)',
 
 	passwordStrength: {
 		weak: '#E05151',

@@ -1,6 +1,7 @@
 import { TouchableOpacity, View } from 'react-native';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Checkbox, FormField, Icon, Text } from '@/components';
+import { navigate } from '@/utils/navigation';
 import { FormSchema } from './schema';
 import { useStyles } from './styles';
 import { usePasswordProgressBar } from './helpers/usePasswordProgressBar';
@@ -35,7 +36,10 @@ export const SignUpForm = () => {
 	}, [email, password]);
 
 	const onSubmit = useCallback(() => {
-		//
+		if (errors != null) {
+			return;
+		}
+		navigate('Categories');
 	}, [errors]);
 
 	const passwordProgressBar = usePasswordProgressBar({

@@ -8,7 +8,7 @@ import {
 } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 
-import { Auth, SignUp } from '@/screens';
+import { Auth, Categories, SignUp } from '@/screens';
 import { navigationRef } from '@/utils/navigation';
 
 const Stack = createStackNavigator<ApplicationStackParamList>();
@@ -27,11 +27,12 @@ function ApplicationNavigator() {
 		>
 			<Stack.Navigator
 				key={colorScheme}
-				initialRouteName="SignUp"
+				initialRouteName="Categories"
 				screenOptions={screenOptions}
 			>
 				<Stack.Screen name="Auth" component={Auth} />
 				<Stack.Screen name="SignUp" component={SignUp} />
+				<Stack.Screen name="Categories" component={Categories} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

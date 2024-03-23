@@ -1,1 +1,1 @@
-export * as EmptyOrganism from './Empty';
+export * from './CategoriesList';
