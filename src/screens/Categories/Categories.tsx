@@ -1,14 +1,27 @@
 import { type ApplicationScreenProps } from '@/types';
 
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { CategoriesList, Icon, Screen, Text } from '@/components';
+import { useAppDispatch } from '@/hooks/useReduxStore';
+import { categoryActions } from '@/services/store/Category';
 import { useStyles } from './styles';
 
 const BACK_HIT_SLOP = { top: 10, right: 10, bottom: 10, left: 10 };
 
 export function Categories({ navigation }: ApplicationScreenProps) {
 	const { styles } = useStyles();
+	const dispatch = useAppDispatch();
+
+	const [selected, setSelected] = useState<Record<number, boolean>>({});
+
+	const doneDisabled = useMemo(() => {
+		return !Object.values(selected).some(value => value);
+	}, [selected]);
+
+	const handleDone = () => {
+		dispatch(categoryActions.savedCategory(selected));
+	};
 
 	return (
 		<Screen backgroundColor="#000">
@@ -25,7 +38,7 @@ export function Categories({ navigation }: ApplicationScreenProps) {
 					onPress={navigation.goBack}
 					hitSlop={BACK_HIT_SLOP}
 				/>
-				<TouchableOpacity>
+				<TouchableOpacity disabled={doneDisabled} onPress={handleDone}>
 					<Text>Done</Text>
 				</TouchableOpacity>
 			</View>
@@ -35,7 +48,7 @@ export function Categories({ navigation }: ApplicationScreenProps) {
 					Please select categories what you would like to see on your feed. You
 					can set this later on Filter.
 				</Text>
-				<CategoriesList />
+				<CategoriesList selected={selected} setSelected={setSelected} />
 			</View>
 		</Screen>
 	);

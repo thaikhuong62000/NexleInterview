@@ -51,6 +51,7 @@ export const SignUpForm = () => {
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
 				Alert.alert('Forbidden', signUpResult.data?.message);
 			}
+			return;
 		}
 
 		const loginResult = await dispatch(authActions.login({ email, password }));

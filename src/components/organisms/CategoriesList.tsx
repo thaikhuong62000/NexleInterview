@@ -6,10 +6,14 @@ import { Category } from '@/types';
 import { chunk } from 'lodash';
 import { CategoryItem } from '../molecules';
 
-export const CategoriesList = () => {
+type Props = {
+	selected: Record<number, boolean>;
+	setSelected: React.Dispatch<React.SetStateAction<Record<number, boolean>>>;
+};
+
+export const CategoriesList = ({ selected, setSelected }: Props) => {
 	const { styles } = useStyles();
 	const [data, setData] = useState<Category[][]>([]);
-	const [selected, setSelected] = useState<Record<number, boolean>>({});
 
 	useEffect(() => {
 		api
@@ -58,7 +62,13 @@ export const CategoriesList = () => {
 		);
 	};
 
-	return <FlatList data={data} renderItem={renderItem} />;
+	return (
+		<FlatList
+			data={data}
+			renderItem={renderItem}
+			showsVerticalScrollIndicator={false}
+		/>
+	);
 };
 
 const useStyles = makeStyles(() => ({
