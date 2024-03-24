@@ -11,6 +11,11 @@ export const SignUpResponse = z.object({
 });
 export type SignUpResponse = z.infer<typeof SignUpResponse>;
 
+export type LoginParams = {
+	email: string;
+	password: string;
+};
+
 export const LoginResponse = z.object({
 	user: z.object({
 		id: z.number(),

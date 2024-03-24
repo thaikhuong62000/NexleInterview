@@ -5,12 +5,13 @@
  * See the [Backend API Integration](https://docs.infinite.red/ignite-cli/boilerplate/app/services/Services.md)
  * documentation for more details.
  */
-import { Categories, LoginResponse, SignUpResponse } from '@/types';
+import { Categories, Category, LoginResponse, SignUpResponse } from '@/types';
 
 import { ApiResponse, ApisauceInstance, create } from 'apisauce';
 import Config from '../../config';
 import { GeneralApiProblem, getGeneralApiProblem } from './apiProblem';
 import type { ApiConfig } from './api.types';
+import { store } from '../store';
 
 /**
  * Configuring the apisauce instance.
@@ -98,14 +99,17 @@ export class Api {
 	}
 
 	async getCategories(): Promise<
-		{ kind: 'ok'; data: Categories } | GeneralApiProblem
+		{ kind: 'ok'; data: Category[] } | GeneralApiProblem
 	> {
-		const response: ApiResponse<Categories> = await this.apisauce.get(
+		const jwt = store.getState().auth.user?.accessToken;
+		if (!jwt) return { kind: 'unauthorized' };
+
+		const response: ApiResponse<Category[]> = await this.apisauce.get(
 			'categories',
 			undefined,
 			{
 				headers: {
-					// Authorization: `Bearer ${Config.API_KEY}`,
+					Authorization: `Bearer ${jwt}`,
 				},
 			}
 		);

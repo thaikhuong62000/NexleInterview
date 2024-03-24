@@ -1,8 +1,10 @@
-import { TouchableOpacity, View } from 'react-native';
+import { Alert, TouchableOpacity, View } from 'react-native';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Checkbox, FormField, Icon, Text } from '@/components';
-import { navigate } from '@/utils/navigation';
 import { api } from '@/services/api';
+import { navigate } from '@/utils/navigation';
+import { useAppDispatch } from '@/hooks/useReduxStore';
+import { authActions } from '@/services/store';
 import { FormSchema } from './schema';
 import { useStyles } from './styles';
 import { usePasswordProgressBar } from './helpers/usePasswordProgressBar';
@@ -10,6 +12,7 @@ import { useFieldTouched } from './helpers/useFieldTouched';
 
 export const SignUpForm = () => {
 	const { styles, colors } = useStyles();
+	const dispatch = useAppDispatch();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -41,12 +44,20 @@ export const SignUpForm = () => {
 			return;
 		}
 
-		const loginResponse = await api.login('test1@gmail.com', '12345678');
-		if (loginResponse.kind !== 'ok') {
-			return;
+		const signUpResult = await api.signUp(email, password);
+
+		if (signUpResult.kind !== 'ok') {
+			if (signUpResult.kind === 'forbidden') {
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+				Alert.alert('Forbidden', signUpResult.data?.message);
+			}
 		}
 
-		navigate('Categories');
+		const loginResult = await dispatch(authActions.login({ email, password }));
+
+		if (loginResult.meta.requestStatus === 'fulfilled') {
+			navigate('Categories');
+		}
 	}, [errors]);
 
 	const passwordProgressBar = usePasswordProgressBar({
@@ -68,7 +79,7 @@ export const SignUpForm = () => {
 				progressColor={
 					emailTouched.isTouched && errors?.email ? colors.error : undefined
 				}
-				onBlur={emailTouched.onBlur}
+				onBlur={emailTouched.onTouched}
 			/>
 			<FormField
 				placeholder="Your password"
@@ -78,7 +89,7 @@ export const SignUpForm = () => {
 				progressLabel={passwordProgressBar.label}
 				progressColor={passwordProgressBar.color}
 				progressPercent={passwordProgressBar.progress}
-				onBlur={passwordTouched.onBlur}
+				onFocus={passwordTouched.onTouched}
 			/>
 			<Checkbox
 				content="I am over 16 years of age"

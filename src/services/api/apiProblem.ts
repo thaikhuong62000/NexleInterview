@@ -20,7 +20,7 @@ export type GeneralApiProblem =
 	/**
 	 * We don't have access to perform that request. This is 403.
 	 */
-	| { kind: 'forbidden' }
+	| { kind: 'forbidden'; data?: any }
 	/**
 	 * Unable to find that resource.  This is a 404.
 	 */
@@ -62,7 +62,7 @@ export function getGeneralApiProblem(
 				case 401:
 					return { kind: 'unauthorized' };
 				case 403:
-					return { kind: 'forbidden' };
+					return { kind: 'forbidden', data: response.data };
 				case 404:
 					return { kind: 'not-found' };
 				default:

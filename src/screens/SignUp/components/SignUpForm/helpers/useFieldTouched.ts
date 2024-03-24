@@ -3,12 +3,12 @@ import { useCallback, useState } from 'react';
 export const useFieldTouched = () => {
 	const [isTouched, setIsTouched] = useState(false);
 
-	const onBlur = useCallback(() => {
+	const onTouched = useCallback(() => {
 		setIsTouched(true);
 	}, []);
 
 	return {
 		isTouched,
-		onBlur,
+		onTouched,
 	};
 };

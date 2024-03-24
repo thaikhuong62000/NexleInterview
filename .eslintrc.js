@@ -60,6 +60,8 @@ module.exports = {
 		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'react/function-component-definition': 'off',
 		'@typescript-eslint/no-redeclare': 'off',
+		'no-param-reassign': 'off',
+		'import/no-cycle': 'off',
 		'prettier/prettier': [
 			'off',
 			{
