@@ -2,6 +2,7 @@ import { TouchableOpacity, View } from 'react-native';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Checkbox, FormField, Icon, Text } from '@/components';
 import { navigate } from '@/utils/navigation';
+import { api } from '@/services/api';
 import { FormSchema } from './schema';
 import { useStyles } from './styles';
 import { usePasswordProgressBar } from './helpers/usePasswordProgressBar';
@@ -35,10 +36,16 @@ export const SignUpForm = () => {
 		return null;
 	}, [email, password]);
 
-	const onSubmit = useCallback(() => {
+	const onSubmit = useCallback(async () => {
 		if (errors != null) {
 			return;
 		}
+
+		const loginResponse = await api.login('test1@gmail.com', '12345678');
+		if (loginResponse.kind !== 'ok') {
+			return;
+		}
+
 		navigate('Categories');
 	}, [errors]);
 
@@ -96,6 +103,7 @@ export const SignUpForm = () => {
 				<Text preset="formValue">Sign Up</Text>
 				<TouchableOpacity
 					style={styles.submitBtn}
+					// eslint-disable-next-line @typescript-eslint/no-misused-promises
 					onPress={onSubmit}
 					disabled={isSubmitDisabled}
 				>

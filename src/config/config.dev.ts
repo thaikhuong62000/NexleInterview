@@ -6,5 +6,5 @@
  * https://reactnative.dev/docs/security#storing-sensitive-info
  */
 export default {
-	API_URL: 'https://vnbigfone.com/api/',
+	API_URL: 'http://streaming.nexlesoft.com:3001/',
 };

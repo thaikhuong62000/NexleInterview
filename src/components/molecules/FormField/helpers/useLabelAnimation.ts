@@ -11,7 +11,9 @@ import { FormFieldProps } from '../type';
 const DEFAULT_Y_OFFSET = scale(28);
 
 export const useLabelAnimation = (props: Partial<FormFieldProps>) => {
-	const yOffset = useRef(new Animated.Value(DEFAULT_Y_OFFSET)).current;
+	const yOffset = useRef(
+		new Animated.Value(props.value?.length === 0 ? DEFAULT_Y_OFFSET : 0)
+	).current;
 
 	const onFocus = useCallback(
 		(e: NativeSyntheticEvent<TextInputFocusEventData>) => {

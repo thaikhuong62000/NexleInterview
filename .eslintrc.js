@@ -59,6 +59,7 @@ module.exports = {
 		'@typescript-eslint/no-use-before-define': 'off',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
 		'react/function-component-definition': 'off',
+		'@typescript-eslint/no-redeclare': 'off',
 		'prettier/prettier': [
 			'off',
 			{

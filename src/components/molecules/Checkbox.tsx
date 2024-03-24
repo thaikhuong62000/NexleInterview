@@ -13,12 +13,10 @@ export const Checkbox = ({ content, checked, onPress }: CheckboxProps) => {
 	const { styles } = useStyles();
 
 	return (
-		<View style={styles.container}>
-			<TouchableOpacity style={styles.checkbox} onPress={onPress}>
-				{checked && <Icon icon="check" />}
-			</TouchableOpacity>
+		<TouchableOpacity style={styles.container} onPress={onPress}>
+			<View style={styles.checkbox}>{checked && <Icon icon="check" />}</View>
 			<Text style={styles.text}>{content}</Text>
-		</View>
+		</TouchableOpacity>
 	);
 };
 
