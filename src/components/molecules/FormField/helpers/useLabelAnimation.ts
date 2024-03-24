@@ -3,12 +3,16 @@ import {
 	Easing,
 	TextInputFocusEventData,
 	NativeSyntheticEvent,
+	Platform,
 } from 'react-native';
 import { useCallback, useMemo, useRef } from 'react';
 import { scale } from '@/theme';
 import { FormFieldProps } from '../type';
 
-const DEFAULT_Y_OFFSET = scale(28);
+const DEFAULT_Y_OFFSET = Platform.select({
+	ios: scale(24),
+	default: scale(28),
+});
 
 export const useLabelAnimation = (props: Partial<FormFieldProps>) => {
 	const yOffset = useRef(

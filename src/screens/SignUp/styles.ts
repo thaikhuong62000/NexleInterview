@@ -1,6 +1,13 @@
 import { makeStyles, statusBarHeight } from '@/theme';
 
 export const useStyles = makeStyles(() => ({
+	screen: {
+		flex: 1,
+	},
+	screenContentContainerStyle: {
+		flex: 0,
+		height: 812,
+	},
 	background: {
 		width: '100%',
 		height: '100%',
@@ -18,7 +25,9 @@ export const useStyles = makeStyles(() => ({
 		marginBottom: 54,
 		marginTop: statusBarHeight,
 	},
-	formContainer: {},
+	formContainer: {
+		marginTop: 190,
+	},
 	header: {
 		paddingBottom: 41,
 	},

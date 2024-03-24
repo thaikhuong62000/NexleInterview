@@ -8,7 +8,7 @@ export function SignUp() {
 	const { styles } = useStyles();
 
 	return (
-		<Screen backgroundColor="#000">
+		<View style={styles.screen}>
 			<View style={styles.background}>
 				<ImageBackground
 					source={require('@/assets/images/SignUpBackground.png')}
@@ -16,15 +16,21 @@ export function SignUp() {
 					style={styles.backgroundImage}
 				/>
 			</View>
-			<View style={styles.container}>
-				<Icon icon="backArrow" />
-				<View style={styles.formContainer}>
-					<Text preset="heading" style={styles.header}>
-						Let’s get you started!
-					</Text>
-					<SignUpForm />
+			<Screen
+				backgroundColor="rgba(0,0,0,0)"
+				preset="scroll"
+				contentContainerStyle={styles.screenContentContainerStyle}
+			>
+				<View style={styles.container}>
+					<Icon icon="backArrow" />
+					<View style={styles.formContainer}>
+						<Text preset="heading" style={styles.header}>
+							Let’s get you started!
+						</Text>
+						<SignUpForm />
+					</View>
 				</View>
-			</View>
-		</Screen>
+			</Screen>
+		</View>
 	);
 }

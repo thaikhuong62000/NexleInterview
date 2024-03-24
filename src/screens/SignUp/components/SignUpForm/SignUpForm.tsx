@@ -106,7 +106,7 @@ export const SignUpForm = () => {
 				and
 				<Text preset="formHelper" style={styles.policyHighlight}>
 					{' '}
-					Privacy Policy
+					Privacy Policy{' '}
 				</Text>
 				onBlur
 			</Text>

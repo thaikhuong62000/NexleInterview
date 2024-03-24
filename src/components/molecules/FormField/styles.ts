@@ -1,11 +1,12 @@
 import { makeStyles } from '@/theme';
 
-export const useStyles = makeStyles(({ typo }) => ({
+export const useStyles = makeStyles(({ colors, typo }) => ({
 	textInput: {
 		paddingBottom: 4,
 		paddingTop: 7,
 		paddingHorizontal: 0,
 		...typo.primary.normal,
+		color: colors.text,
 		fontSize: 16,
 		lineHeight: 19.2,
 	},

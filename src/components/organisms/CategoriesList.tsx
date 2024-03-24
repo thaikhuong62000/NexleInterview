@@ -30,9 +30,9 @@ export const CategoriesList = () => {
 		});
 	}, []);
 
-	const renderItem = ({ item }: ListRenderItemInfo<Category[]>) => {
+	const renderItem = ({ item, index }: ListRenderItemInfo<Category[]>) => {
 		return (
-			<View style={styles.row}>
+			<View style={styles.row} key={`${index}-${item[0]?.id}`}>
 				<CategoryItem
 					key={item[0]?.id}
 					id={item[0]?.id}
